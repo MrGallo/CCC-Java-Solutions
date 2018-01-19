@@ -6,6 +6,8 @@ working through the CCC problems in IntelliJ.
 CCC Java submission requirements:
 - Uploaded `.java` files **must** be named `Main.java`.
 - The contents of the file must **not** contain references to any `package`.
+- There must be **no** output in the program aside from the solution itself.
+  - This means you cannot 'prompt' for user input.
 
 Based on the requirements, working within IntelliJ in a helpful and organized 
 manner can be a a bit cumbersome.
@@ -30,6 +32,13 @@ new module's `src` directory.
 When working in a file, you can run it several ways. Either right-click 
 the **code window** or the **code window tab** and select `Run 'Main.main()'.
 You can also look for a triangular "play" symbol in the margins near the code line numbers.
+
+**Blank Output Window**
+
+Because you cannot 'prompt' for input with a message like `Please enter an integer: `,
+when you run your program, it won't be obvious that it is waithing for you to test it.
+Just click in the output window and enter your test cases.
+
 
 ### Submiting to CCC Online Grader
 From the contest page, under the `Submit Solution` section,
