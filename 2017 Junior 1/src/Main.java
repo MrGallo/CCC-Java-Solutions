@@ -6,10 +6,10 @@ public class Main {
         int x = scan.nextInt();
         int y = scan.nextInt();
 
-        System.out.println(QuadrantSelect(x, y));
+        System.out.println(quadrantSelect(x, y));
     }
 
-    public static int QuadrantSelect(int x, int y) {
+    public static int quadrantSelect(int x, int y) {
         if (x > 0 && y > 0)
             return 1;
         else if (x < 0 & y > 0)
