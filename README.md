@@ -1,6 +1,6 @@
 # CCC Java Solutions
 ## IntelliJ Workflow
-I'll share with you the best way (I have though out so far) for 
+I'll share with you the best way (I have though of so far) for 
 working through the CCC problems in IntelliJ.
 
 CCC Java submission requirements:
