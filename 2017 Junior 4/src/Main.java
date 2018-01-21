@@ -6,6 +6,7 @@ public class Main {
         int minutes = scan.nextInt();
         System.out.println(favouriteTimes(minutes));
     }
+    
     public static int favouriteTimes(int minutes) {
         int rounds = minutes / (12*60);
         int currentRoundMinutes = minutes % (12*60);
