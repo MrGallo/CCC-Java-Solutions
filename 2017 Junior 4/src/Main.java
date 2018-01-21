@@ -12,7 +12,7 @@ public class Main {
         int currentRoundMinutes = minutes % (12*60);
         int[] timeMap = getTimeMap();
         int[] timeMapSubset = Arrays.copyOfRange(timeMap, 0, currentRoundMinutes+1);
-        return getFavCount(timeMapSubset) + (getFavCount(timeMap) * rounds);
+        return getFavCount(timeMapSubset) + getFavCount(timeMap) * rounds;
     }
 
     public static int getFavCount(int[] timeMap) {
