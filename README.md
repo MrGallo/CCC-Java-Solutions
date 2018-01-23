@@ -10,7 +10,7 @@ Required learning:
     - `String.split()`
 - Working with more advanced Objects:
   - Maps (Codingbat [Map-1](http://codingbat.com/java/Map-1), [Map-2](http://codingbat.com/java/Map-2)), Lists, ArrayLists
-- Learn to use streams. [Codingbat Functional-1](http://codingbat.com/java/Functional-1), [COdingbat Functional-2](http://codingbat.com/java/Functional-2)
+- Learn to use streams. [Codingbat Functional-1](http://codingbat.com/java/Functional-1), [Codingbat Functional-2](http://codingbat.com/java/Functional-2)
   - lambdas, `Array.stream()`, `.map()`, `.filter()`, `.collect()` (Advanced)
 
 ## IntelliJ Workflow
