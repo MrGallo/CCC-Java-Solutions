@@ -1,4 +1,18 @@
 # CCC Java Solutions
+
+## General Knowledge Requirements
+To be successful in this competition, you need to acquire some programming skills that may extend further than the standard curriculum. The CCC Problems are quite the challenge. You will need to practice often. Although smaller in scope, the problems on [Codingbat.com](http://codingbat.com/java) can be a great preperation for the type of problems you will encounter.
+Required learning:
+- Every question will have you take String input and parse it to an integer.
+  - You will get strings like "1 3 5 3 5" and will need to turn it into an integer array.
+  - Learn:
+    - `Integer.parseInt()`
+    - `String.split()`
+- Working with more advanced Objects:
+  - Maps (Codingbat [Map-1](http://codingbat.com/java/Map-1), [Map-2](http://codingbat.com/java/Map-2)), Lists, ArrayLists
+- Learn to use streams. [Codingbat Functional-1](http://codingbat.com/java/Functional-1), [COdingbat Functional-2](http://codingbat.com/java/Functional-2)
+  - lambdas, `Array.stream()`, `.map()`, `.filter()`, `.collect()` (Advanced)
+
 ## IntelliJ Workflow
 I'll share with you the best way (I have though of so far) for 
 working through the CCC problems in IntelliJ.
