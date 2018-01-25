@@ -1,36 +1,34 @@
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         int numPlanks = Integer.parseInt(scan.nextLine());  // throw-away variable
-        List<Integer> planks = convertStringInputToIntegerList(scan.nextLine());
-        Map<Integer, Integer> plankQuantities = sortPlanks(planks);
-        Map<Integer, Integer> fenceHeightQuantities = getFenceHeightQuantityMap(plankQuantities);
-        int longestFence = findLongestFence(fenceHeightQuantities);
-        int combinations = getNumberOfCombinationsOfGivenLength(longestFence, fenceHeightQuantities);
-        System.out.println(longestFence + " " + combinations);
+
+        Map<Integer, Integer> sortedPlanks = getPlankInputAndSort(scan);
+
+        // rename method?
+        Map<Integer, Integer> fenceHeightQuantities = getFenceHeightQuantityMap(sortedPlanks);
+        //-- end rename
+
+        int longestLength = findLongestFence(fenceHeightQuantities);
+
+        int combinations = getFrequencyOfGivenLength(longestLength, fenceHeightQuantities);
+        System.out.println(longestLength + " " + combinations);
     }
 
-    public static Map<Integer,Integer> sortPlanks(List<Integer> plankLengths) {
-        Map<Integer, Integer> plankQuantityMap = new HashMap<>();
-        for (int length : plankLengths)
-            addLengthToQuantityMap(plankQuantityMap, length);
-        return plankQuantityMap;
+    public static Map<Integer,Integer> getPlankInputAndSort(Scanner scan) {
+        Map<Integer, Integer> sortedPlanks = new HashMap<>();
+        while (scan.hasNextInt())
+            sortAndAddLengthToSortedMap(sortedPlanks, scan.nextInt());
+        return sortedPlanks;
     }
 
-    private static void addLengthToQuantityMap(Map<Integer, Integer> plankQuantityMap, int length) {
+    private static void sortAndAddLengthToSortedMap(Map<Integer, Integer> plankQuantityMap, int length) {
         if (!plankQuantityMap.containsKey(length))
             plankQuantityMap.put(length, 1);
         else
             plankQuantityMap.put(length, plankQuantityMap.get(length) + 1);
-    }
-
-    private static List<Integer> convertStringInputToIntegerList(String plankLengthsString) {
-        return Arrays.stream(plankLengthsString.split(" "))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
     }
 
     public static Map<Integer,Integer> getFenceHeightQuantityMap(Map<Integer, Integer> plankLengths) {
@@ -76,7 +74,7 @@ public class Main {
         return largestLength;
     }
 
-    public static int getNumberOfCombinationsOfGivenLength(int fenceLength, Map<Integer, Integer> fenceHeightQuantities) {
+    public static int getFrequencyOfGivenLength(int fenceLength, Map<Integer, Integer> fenceHeightQuantities) {
         int combinations = 0;
         for (int height : fenceHeightQuantities.keySet())
             if (fenceHeightQuantities.get(height) == fenceLength)

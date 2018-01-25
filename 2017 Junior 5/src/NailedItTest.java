@@ -1,9 +1,10 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
+import java.io.ByteArrayInputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -22,15 +23,23 @@ public class NailedItTest {
     }
 
     @Test
-    public void canSortPlanksOfUniqueLength() {
-        assertEquals(plankLengths, Main.sortPlanks(Arrays.asList(1,2,3,15)));
+    public void getPlankInputAndSort1() {
+        ByteArrayInputStream in = new ByteArrayInputStream("1 2 3 15".getBytes());
+        System.setIn(in);
+        Scanner scan = new Scanner(System.in);
+        assertEquals(plankLengths, Main.getPlankInputAndSort(scan));
     }
 
     @Test
-    public void canSortPlanksOfRepeatedLength() {
+    public void getPlankInputAndSort2() {
+        ByteArrayInputStream in = new ByteArrayInputStream("1 2 3 15 1 2 3 15".getBytes());
+        System.setIn(in);
+        Scanner scan = new Scanner(System.in);
+        plankLengths.put(1, 2);
         plankLengths.put(2, 2);
-        plankLengths.put(15, 3);
-        assertEquals(plankLengths, Main.sortPlanks(Arrays.asList(1,2,2,3,15,15,15)));
+        plankLengths.put(3, 2);
+        plankLengths.put(15, 2);
+        assertEquals(plankLengths, Main.getPlankInputAndSort(scan));
     }
 
     @Test
@@ -62,13 +71,13 @@ public class NailedItTest {
         fenceHeightQuantities.put(2, 1);
         fenceHeightQuantities.put(4, 0);
         fenceHeightQuantities.put(5, 1);
-        assertEquals(2, Main.getNumberOfCombinationsOfGivenLength(1, fenceHeightQuantities));
+        assertEquals(2, Main.getFrequencyOfGivenLength(1, fenceHeightQuantities));
 
         fenceHeightQuantities.put(7, 3);
         fenceHeightQuantities.put(8, 3);
         fenceHeightQuantities.put(9, 3);
         fenceHeightQuantities.put(10, 3);
-        assertEquals(4, Main.getNumberOfCombinationsOfGivenLength(3, fenceHeightQuantities));
+        assertEquals(4, Main.getFrequencyOfGivenLength(3, fenceHeightQuantities));
     }
 
 
