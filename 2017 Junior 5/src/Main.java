@@ -7,13 +7,11 @@ public class Main {
 
         Map<Integer, Integer> sortedPlanks = getPlankInputAndSort(scan);
 
-        // rename method?
-        Map<Integer, Integer> fenceHeightQuantities = getFenceHeightQuantityMap(sortedPlanks);
-        //-- end rename
+        Map<Integer, Integer> fenceLengthByBoardHeight = getFenceLengthForEachBoardHeight(sortedPlanks);
 
-        int longestLength = findLongestFence(fenceHeightQuantities);
+        int longestLength = findLongestFence(fenceLengthByBoardHeight);
 
-        int combinations = getFrequencyOfGivenLength(longestLength, fenceHeightQuantities);
+        int combinations = getFrequencyOfGivenLength(longestLength, fenceLengthByBoardHeight);
         System.out.println(longestLength + " " + combinations);
     }
 
@@ -31,35 +29,43 @@ public class Main {
             plankQuantityMap.put(length, plankQuantityMap.get(length) + 1);
     }
 
-    public static Map<Integer,Integer> getFenceHeightQuantityMap(Map<Integer, Integer> plankLengths) {
-        HashMap<Integer, Integer> fenceHeightQuantities = new HashMap<>();
+    public static Map<Integer,Integer> getFenceLengthForEachBoardHeight(Map<Integer, Integer> sortedPlanks) {
+        HashMap<Integer, Integer> fenceLengthByBoardHeight = new HashMap<>();
+        Integer[] lengths = getKeysAsIntegerArray(sortedPlanks);
 
-        Integer[] lengths = getIntegerArrayFromKeySet(plankLengths);
         for (int i = 0; i < lengths.length; i++) {
-            int length = lengths[i];
-            for (int j = i; j < lengths.length; j++) {
-                int otherLength = lengths[j];
-                // make pairs with itself
-                if (length == otherLength) {
-                    if (!fenceHeightQuantities.containsKey(length*2))
-                        fenceHeightQuantities.put(length*2, plankLengths.get(length) / 2);
-                    else
-                        fenceHeightQuantities.put(length*2, fenceHeightQuantities.get(length*2) + plankLengths.get(length)/2);
+            int firstPlankLength = lengths[i];
+
+            // make pairs with itself
+            int numberOfPairings = sortedPlanks.get(firstPlankLength) / 2;
+            int boardHeight = firstPlankLength * 2;
+
+            if (!fenceLengthByBoardHeight.containsKey(boardHeight))
+                fenceLengthByBoardHeight.put(boardHeight, numberOfPairings);
+            else
+                fenceLengthByBoardHeight.put(boardHeight, fenceLengthByBoardHeight.get(boardHeight) + numberOfPairings);
+
+            // make pairs with rest
+            for (int j = i+1; j < lengths.length; j++) {
+                int secondPlankLength = lengths[j];
+
+                int height = firstPlankLength + secondPlankLength;
+                if (!fenceLengthByBoardHeight.containsKey(height)) {
+                    fenceLengthByBoardHeight.put(height, numOfPossiblePairings(sortedPlanks, firstPlankLength, secondPlankLength));
                 } else {
-                    // make pairs with rest
-                    int comboLength = length + otherLength;
-                    if (!fenceHeightQuantities.containsKey(comboLength)) {
-                        fenceHeightQuantities.put(comboLength, Math.min(plankLengths.get(length), plankLengths.get(otherLength)));
-                    } else {
-                        fenceHeightQuantities.put(comboLength, fenceHeightQuantities.get(comboLength) + Math.min(plankLengths.get(length), plankLengths.get(otherLength)));
-                    }
+                    fenceLengthByBoardHeight.put(height, fenceLengthByBoardHeight.get(height) + numOfPossiblePairings(sortedPlanks, firstPlankLength, secondPlankLength));
                 }
             }
         }
-        return fenceHeightQuantities;
+
+        return fenceLengthByBoardHeight;
     }
 
-    private static Integer[] getIntegerArrayFromKeySet(Map<Integer, Integer> plankLengths) {
+    private static int numOfPossiblePairings(Map<Integer, Integer> sortedPlanks, int firstPlankLength, int secondPlankLength) {
+        return Math.min(sortedPlanks.get(firstPlankLength), sortedPlanks.get(secondPlankLength));
+    }
+
+    private static Integer[] getKeysAsIntegerArray(Map<Integer, Integer> plankLengths) {
         Set<Integer> keys = plankLengths.keySet();
         Integer[] lengths = keys.toArray(new Integer[keys.size()]);
         return lengths;

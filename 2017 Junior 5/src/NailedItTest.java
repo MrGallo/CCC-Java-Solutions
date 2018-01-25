@@ -54,7 +54,7 @@ public class NailedItTest {
         fenceHeightQuantities.put(2, 0);
         fenceHeightQuantities.put(6, 0);
         fenceHeightQuantities.put(30, 0);
-        assertEquals(fenceHeightQuantities, Main.getFenceHeightQuantityMap(plankLengths));
+        assertEquals(fenceHeightQuantities, Main.getFenceLengthForEachBoardHeight(plankLengths));
     }
 
     @Test
