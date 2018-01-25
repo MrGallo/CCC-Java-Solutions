@@ -11,8 +11,7 @@ public class Main {
         String team1SeasonPoints = scan.nextLine();
         String team2SeasonPoints = scan.nextLine();
 
-        int lastGameEqual = sumGame(team1SeasonPoints, team2SeasonPoints, days);
-        System.out.println(lastGameEqual);
+        System.out.println(sumGame(team1SeasonPoints, team2SeasonPoints, days));
     }
 
     public static int sumGame(String team1SeasonPoints, String team2SeasonPoints, int totalDays) {
@@ -23,13 +22,16 @@ public class Main {
         int team1TotalPoints = 0;
         int team2TotalPoints = 0;
 
-        for (int i = 0; i < totalDays; i++) {
-            team1TotalPoints += Integer.parseInt(team1SeasonPointsArray[i]);
-            team2TotalPoints += Integer.parseInt(team2SeasonPointsArray[i]);
-            if (team1TotalPoints == team2TotalPoints) {
-                latestDayWithEqualPoints = i + 1;
-            }
+        for (int day = 1; day <= totalDays; day++) {
+            team1TotalPoints = getPointsFromDayAsInt(team1SeasonPointsArray, day);
+            team2TotalPoints = getPointsFromDayAsInt(team2SeasonPointsArray, day);
+            if (team1TotalPoints == team2TotalPoints)
+                latestDayWithEqualPoints = day;
         }
         return latestDayWithEqualPoints;
+    }
+
+    private static int getPointsFromDayAsInt(String[] seasonPointsArray, int day) {
+        return Integer.parseInt(seasonPointsArray[day-1]);
     }
 }
