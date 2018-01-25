@@ -6,11 +6,9 @@ public class Main {
         int numPlanks = Integer.parseInt(scan.nextLine());  // throw-away variable
 
         Map<Integer, Integer> sortedPlanks = getPlankInputAndSort(scan);
-
         Map<Integer, Integer> fenceLengthByBoardHeight = getFenceLengthForEachBoardHeight(sortedPlanks);
 
         int longestLength = findLongestFence(fenceLengthByBoardHeight);
-
         int combinations = getFrequencyOfGivenLength(longestLength, fenceLengthByBoardHeight);
         System.out.println(longestLength + " " + combinations);
     }
