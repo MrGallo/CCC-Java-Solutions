@@ -23,8 +23,8 @@ public class Main {
         int team2TotalPoints = 0;
 
         for (int day = 1; day <= totalDays; day++) {
-            team1TotalPoints = getPointsFromDayAsInt(team1SeasonPointsArray, day);
-            team2TotalPoints = getPointsFromDayAsInt(team2SeasonPointsArray, day);
+            team1TotalPoints += getPointsFromDayAsInt(team1SeasonPointsArray, day);
+            team2TotalPoints += getPointsFromDayAsInt(team2SeasonPointsArray, day);
             if (team1TotalPoints == team2TotalPoints)
                 latestDayWithEqualPoints = day;
         }
