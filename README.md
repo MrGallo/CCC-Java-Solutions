@@ -6,6 +6,7 @@ Required learning:
 - Every question will have you take String input and parse it to an integer.
   - You will get strings like "1 3 5 3 5" and will need to turn it into an integer array.
   - Learn:
+    - `Scanner`
     - `Integer.parseInt()`
     - `String.split()`
 - Working with more advanced Objects:
