@@ -23,7 +23,7 @@ public class Main {
     }
 
     private static boolean gridNotRotatedProperly() {
-        return !leftColumnInOrder() || !allRowsInOrder();
+        return !(leftColumnInOrder() && allRowsInOrder());
     }
 
     public static boolean leftColumnInOrder() {
